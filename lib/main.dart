@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'application.dart';
+import 'data/net_manager.dart';
+import 'data/api.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  Application.netManager = NetManager(Api.BASE_URL);
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
