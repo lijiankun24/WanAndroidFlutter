@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'application.dart';
-import 'data/net_manager.dart';
-import 'data/api.dart';
+import 'package:wanandroid_flutter/common/application.dart';
 
 void main() {
-  Application.netManager = NetManager(Api.BASE_URL);
-  runApp(MyApp());
+  Application.globalInit(() {
+    runApp(MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
