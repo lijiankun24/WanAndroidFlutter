@@ -7,25 +7,5 @@ abstract class BasePage extends StatefulWidget {
 }
 
 abstract class BasePageState<T extends BasePage> extends State<T> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: getAppBar(),
-      body: getBody(),
-    );
-  }
-
-  Widget getAppBar();
-
-  Widget getBody();
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 }
