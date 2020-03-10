@@ -13,6 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'WanAndroid-Flutter',
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: Colors.lightBlue,
+      ),
       home: HomePage(),
     );
   }

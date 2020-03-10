@@ -18,6 +18,28 @@ class _HomeState extends BasePageState<HomePage> {
       body: Center(
         child: Text('wanandroid_flutter Body'),
       ),
+      bottomNavigationBar: BottomNavigationBar(items: [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          title: Text('首页'),
+          backgroundColor: Colors.lightBlue,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.book),
+          title: Text('项目'),
+          backgroundColor: Colors.lightBlue,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.assignment),
+          title: Text('动态'),
+          backgroundColor: Colors.lightBlue,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.system_update),
+          title: Text('体系'),
+          backgroundColor: Colors.lightBlue,
+        ),
+      ]),
     );
   }
 }
