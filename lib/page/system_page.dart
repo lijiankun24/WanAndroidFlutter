@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/base/widget/base_page.dart';
 
-class HomePage extends BasePage {
+class SystemPage extends BasePage {
   @override
   BasePageState createState() {
-    return _HomeState();
+    return _SystemState();
   }
 }
 
-class _HomeState extends BasePageState<HomePage> {
+class _SystemState extends BasePageState<SystemPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text('首页'),
+        child: Text('体系'),
       ),
     );
   }

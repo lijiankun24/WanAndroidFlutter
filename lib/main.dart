@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/common/application.dart';
-import 'page/home_page.dart';
+import 'page/main_page.dart';
 
 void main() {
   Application.globalInit(() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light,
         primaryColor: Colors.lightBlue,
       ),
-      home: HomePage(),
+      home: MainPage(),
     );
   }
 }
