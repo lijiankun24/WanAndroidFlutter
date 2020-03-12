@@ -24,9 +24,6 @@ class _MainState extends BasePageState<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('wanandroid_flutter AppBar'),
-      ),
       body: IndexedStack(
         children: _pages,
         index: _selectedIndex,
@@ -56,11 +53,15 @@ class _MainState extends BasePageState<MainPage> {
         ],
         currentIndex: _selectedIndex,
         onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
+          changePage(index);
         },
       ),
     );
+  }
+
+  void changePage(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 }
