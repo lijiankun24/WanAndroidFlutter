@@ -6,8 +6,8 @@ import 'package:wanandroid_flutter/base/widget/base_page.dart';
 
 import '../base/bloc/bloc_provider.dart';
 import '../common/object_util.dart';
-import '../data/banner/banner_bloc.dart';
-import '../data/banner/banner_model.dart';
+import '../data/home/banner/banner_bloc.dart';
+import '../data/home/banner/banner_model.dart';
 
 class HomePage extends BasePage {
   @override

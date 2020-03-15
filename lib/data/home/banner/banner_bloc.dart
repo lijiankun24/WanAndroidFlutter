@@ -2,7 +2,7 @@ import 'package:wanandroid_flutter/base/bloc/base_bloc.dart';
 import 'dart:async';
 import 'banner_model.dart';
 import 'package:wanandroid_flutter/common/application.dart';
-import '../api.dart';
+import '../../api.dart';
 
 class BannerBLoC extends BaseBLoC {
   StreamController<BannerResponse> _streamController =
