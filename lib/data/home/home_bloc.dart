@@ -1,9 +1,6 @@
-import 'package:wanandroid_flutter/base/bloc/base_bloc.dart';
+import 'package:wanandroid_flutter/common/common_import.dart';
 
 class HomeBLoC extends BaseBLoC {
-
   @override
-  void dispose() {
-
-  }
+  void dispose() {}
 }
