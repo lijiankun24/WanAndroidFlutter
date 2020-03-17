@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flukit/flukit.dart';
 import 'package:flutter/material.dart';
+import 'package:provide/provide.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:wanandroid_flutter/base/widget/base_page.dart';
+import 'package:wanandroid_flutter/data/home/banner/banner_notifier.dart';
 
-import '../base/bloc/bloc_provider.dart';
 import '../common/object_util.dart';
-import '../data/home/banner/banner_bloc.dart';
 import '../data/home/banner/banner_model.dart';
 
 class HomePage extends BasePage {
@@ -33,24 +33,25 @@ class _HomeState extends BasePageState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    BannerBLoC bLoC = BLoCProvider.of(context);
     Observable.just(1).delay(Duration(milliseconds: 100)).listen((_) {
-      bLoC.getBanner();
+      Provide.value<BannerNotifier>(context).getBanner();
     });
-    return new StreamBuilder(
-        stream: bLoC.stream,
-        builder: (context, snapshot) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('首页'),
-            ),
-            body: ListView(
-              children: <Widget>[buildBanner(context, snapshot?.data?.data)],
-            ),
-            floatingActionButton: FloatingActionButton(onPressed: () {
-              bLoC.getBanner();
-            }),
-          );
-        });
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('首页'),
+      ),
+      body: ListView(
+        children: <Widget>[
+          Provide<BannerNotifier>(
+            builder: (context, child, bannerNotifier) {
+              return buildBanner(context, bannerNotifier?.response?.data);
+            },
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Provide.value<BannerNotifier>(context).getBanner();
+      }),
+    );
   }
 }

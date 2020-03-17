@@ -4,3 +4,4 @@ export 'package:wanandroid_flutter/data/api.dart';
 export 'package:wanandroid_flutter/common/application.dart';
 export 'package:json_annotation/json_annotation.dart';
 export 'package:flutter/material.dart';
+export 'package:provide/provide.dart';
