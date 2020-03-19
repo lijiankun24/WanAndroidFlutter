@@ -8,6 +8,8 @@ import 'package:wanandroid_flutter/data/home/banner/banner_notifier.dart';
 
 import '../common/object_util.dart';
 import '../data/home/banner/banner_model.dart';
+import 'package:wanandroid_flutter/data/home/article_list/article_list_notifier.dart';
+import 'package:wanandroid_flutter/data/home/article_list/article_list_model.dart';
 
 class HomePage extends BasePage {
   @override
@@ -31,10 +33,21 @@ class _HomeState extends BasePageState<HomePage> {
     );
   }
 
+  Widget buildListItem(List<ArticleModel> list) {
+    if (ObjectUtil.isEmpty(list)) {
+      return Container(height: 0.0);
+    }
+    List<Widget> listItem = list.map((articleModel) {
+      return Text(articleModel.title);
+    }).toList();
+    return Column(children: listItem);
+  }
+
   @override
   Widget build(BuildContext context) {
     Observable.just(1).delay(Duration(milliseconds: 100)).listen((_) {
       Provide.value<BannerNotifier>(context).getBanner();
+      Provide.value<ArticleNotifier>(context).getArticleList();
     });
     return Scaffold(
       appBar: AppBar(
@@ -47,10 +60,16 @@ class _HomeState extends BasePageState<HomePage> {
               return buildBanner(context, bannerNotifier?.response?.data);
             },
           ),
+          Provide<ArticleNotifier>(
+            builder: (context, child, articleNotifier) {
+              return buildListItem(articleNotifier?.response?.data?.datas);
+            },
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(onPressed: () {
         Provide.value<BannerNotifier>(context).getBanner();
+        Provide.value<ArticleNotifier>(context).getArticleList();
       }),
     );
   }

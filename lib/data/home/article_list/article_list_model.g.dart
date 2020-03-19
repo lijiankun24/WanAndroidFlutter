@@ -52,7 +52,7 @@ Map<String, dynamic> _$ArticleListPageToJson(ArticleListPage instance) =>
 ArticleModel _$ArticleModelFromJson(Map<String, dynamic> json) {
   return ArticleModel(
       json['apkLink'] as String,
-      json['audie'] as int,
+      json['audit'] as int,
       json['author'] as String,
       json['canEdit'] as bool,
       json['chapterId'] as int,
@@ -76,7 +76,6 @@ ArticleModel _$ArticleModelFromJson(Map<String, dynamic> json) {
       json['shareUser'] as String,
       json['superChapterId'] as int,
       json['superChapterName'] as String,
-      (json['tags'] as List)?.map((e) => e as String)?.toList(),
       json['title'] as String,
       json['type'] as int,
       json['userId'] as int,
@@ -87,7 +86,7 @@ ArticleModel _$ArticleModelFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$ArticleModelToJson(ArticleModel instance) =>
     <String, dynamic>{
       'apkLink': instance.apkLink,
-      'audie': instance.audie,
+      'audit': instance.audit,
       'author': instance.author,
       'canEdit': instance.canEdit,
       'chapterId': instance.chapterId,
@@ -111,7 +110,6 @@ Map<String, dynamic> _$ArticleModelToJson(ArticleModel instance) =>
       'shareUser': instance.shareUser,
       'superChapterId': instance.superChapterId,
       'superChapterName': instance.superChapterName,
-      'tags': instance.tags,
       'title': instance.title,
       'type': instance.type,
       'userId': instance.userId,

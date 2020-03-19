@@ -38,7 +38,7 @@ class ArticleListPage {
 @JsonSerializable()
 class ArticleModel {
   String apkLink;
-  int audie;
+  int audit;
   String author;
   bool canEdit;
   int chapterId;
@@ -62,7 +62,6 @@ class ArticleModel {
   String shareUser;
   int superChapterId;
   String superChapterName;
-  List<String> tags;
   String title;
   int type;
   int userId;
@@ -71,7 +70,7 @@ class ArticleModel {
 
   ArticleModel(
       this.apkLink,
-      this.audie,
+      this.audit,
       this.author,
       this.canEdit,
       this.chapterId,
@@ -95,7 +94,6 @@ class ArticleModel {
       this.shareUser,
       this.superChapterId,
       this.superChapterName,
-      this.tags,
       this.title,
       this.type,
       this.userId,
