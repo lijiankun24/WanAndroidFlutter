@@ -9,24 +9,30 @@ class ArticleItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double titleBottomPadding = ObjectUtil.isEmpty(articleModel.desc) ? 15 : 10;
+    double titleBottomPadding =
+        ObjectUtil.isEmpty(articleModel.desc) ? 16.5 : 10;
+    String publishTime =
+        new DateTime.fromMillisecondsSinceEpoch(articleModel.publishTime)
+            .toString();
     return InkWell(
       onTap: () {},
       child: Container(
           alignment: Alignment.centerLeft,
-          color: Colors.lightBlue,
+          padding: EdgeInsets.only(
+            left: 20,
+            right: 20,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
                 padding: EdgeInsets.only(
-                  top: 15,
-                  left: 20,
-                  right: 20,
+                  top: 16.5,
                   bottom: titleBottomPadding,
                 ),
                 child: Text(
                   articleModel.title,
+                  style: TextStyle(color: Color(0xff222333), fontSize: 16),
                   maxLines: 1,
                 ),
               ),
@@ -34,19 +40,41 @@ class ArticleItem extends StatelessWidget {
                 visible: !ObjectUtil.isEmpty(articleModel.desc),
                 child: Container(
                   padding: EdgeInsets.only(
-                    left: 20,
-                    right: 20,
-                    bottom: 15,
+                    bottom: 16.5,
                   ),
                   child: Text(
                     articleModel.desc,
+                    style: TextStyle(color: Color(0xff8d8d98), fontSize: 12),
                     maxLines: 3,
                   ),
                 ),
               ),
+              Row(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.only(
+                      right: 5,
+                      bottom: 16.5,
+                    ),
+                    child: Text(
+                      articleModel.author,
+                      style: TextStyle(color: Color(0xff8d8d98), fontSize: 12),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(
+                      bottom: 16.5,
+                    ),
+                    child: Text(
+                      publishTime,
+                      style: TextStyle(color: Color(0xff8d8d98), fontSize: 12),
+                    ),
+                  ),
+                ],
+              ),
               Container(
                 height: 0.5,
-                color: Colors.grey,
+                color: new Color(0xffe3e3e3),
               ),
             ],
           )),
