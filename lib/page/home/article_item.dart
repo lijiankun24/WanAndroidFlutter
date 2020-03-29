@@ -11,9 +11,7 @@ class ArticleItem extends StatelessWidget {
   Widget build(BuildContext context) {
     double titleBottomPadding =
         ObjectUtil.isEmpty(articleModel.desc) ? 16.5 : 10;
-    String publishTime =
-        new DateTime.fromMillisecondsSinceEpoch(articleModel.publishTime)
-            .toString();
+    String publishTime = ObjectUtil.timeToDate(articleModel.publishTime);
     return InkWell(
       onTap: () {},
       child: Container(
@@ -51,14 +49,18 @@ class ArticleItem extends StatelessWidget {
               ),
               Row(
                 children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.only(
-                      right: 5,
-                      bottom: 16.5,
-                    ),
-                    child: Text(
-                      articleModel.author,
-                      style: TextStyle(color: Color(0xff8d8d98), fontSize: 12),
+                  Visibility(
+                    visible: !ObjectUtil.isEmpty(articleModel.author),
+                    child: Container(
+                      padding: EdgeInsets.only(
+                        right: 5,
+                        bottom: 16.5,
+                      ),
+                      child: Text(
+                        articleModel.author,
+                        style:
+                            TextStyle(color: Color(0xff8d8d98), fontSize: 12),
+                      ),
                     ),
                   ),
                   Container(

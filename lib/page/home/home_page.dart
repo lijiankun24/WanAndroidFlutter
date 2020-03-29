@@ -20,6 +20,47 @@ class HomePage extends BasePage {
 }
 
 class _HomeState extends BasePageState<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    Observable.just(1).delay(Duration(milliseconds: 100)).listen((_) {
+      Provide.value<BannerNotifier>(context).getBanner();
+      Provide.value<ArticleNotifier>(context).getArticleList();
+    });
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('首页'),
+      ),
+      body: RefreshIndicator(
+        child: ListView(
+          children: <Widget>[
+            Provide<BannerNotifier>(
+              builder: (context, child, bannerNotifier) {
+                return buildBanner(context, bannerNotifier?.response?.data);
+              },
+            ),
+            Provide<ArticleNotifier>(
+              builder: (context, child, articleNotifier) {
+                return buildListItem(articleNotifier?.response?.data?.datas);
+              },
+            ),
+          ],
+        ),
+        onRefresh: () {
+          return _refreshData(context);
+        },
+      ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Provide.value<BannerNotifier>(context).getBanner();
+        Provide.value<ArticleNotifier>(context).getArticleList();
+      }),
+    );
+  }
+
+  Future<Null> _refreshData(BuildContext context) {
+    Provide.value<BannerNotifier>(context).getBanner();
+    Provide.value<ArticleNotifier>(context).getArticleList();
+  }
+
   Widget buildBanner(BuildContext context, List<BannerModel> list) {
     if (ObjectUtil.isEmpty(list)) {
       return Container(height: 0.0);
@@ -42,36 +83,5 @@ class _HomeState extends BasePageState<HomePage> {
       return ArticleItem(articleModel);
     }).toList();
     return Column(children: listItem);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Observable.just(1).delay(Duration(milliseconds: 100)).listen((_) {
-      Provide.value<BannerNotifier>(context).getBanner();
-      Provide.value<ArticleNotifier>(context).getArticleList();
-    });
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('首页'),
-      ),
-      body: ListView(
-        children: <Widget>[
-          Provide<BannerNotifier>(
-            builder: (context, child, bannerNotifier) {
-              return buildBanner(context, bannerNotifier?.response?.data);
-            },
-          ),
-          Provide<ArticleNotifier>(
-            builder: (context, child, articleNotifier) {
-              return buildListItem(articleNotifier?.response?.data?.datas);
-            },
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Provide.value<BannerNotifier>(context).getBanner();
-        Provide.value<ArticleNotifier>(context).getArticleList();
-      }),
-    );
   }
 }
