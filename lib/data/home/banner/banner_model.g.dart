@@ -8,19 +8,19 @@ part of 'banner_model.dart';
 
 BannerResponse _$BannerResponseFromJson(Map<String, dynamic> json) {
   return BannerResponse(
-      json['errorMsg'] as String,
-      json['errorCode'] as int,
       (json['data'] as List)
           ?.map((e) => e == null
               ? null
               : BannerModel.fromJson(e as Map<String, dynamic>))
-          ?.toList());
+          ?.toList(),
+      json['errorCode'] as int,
+      json['errorMsg'] as String);
 }
 
 Map<String, dynamic> _$BannerResponseToJson(BannerResponse instance) =>
     <String, dynamic>{
-      'errorMsg': instance.errorMsg,
       'errorCode': instance.errorCode,
+      'errorMsg': instance.errorMsg,
       'data': instance.data
     };
 

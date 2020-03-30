@@ -1,14 +1,14 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:wanandroid_flutter/base/base_response.dart';
 
 part 'banner_model.g.dart';
 
 @JsonSerializable()
-class BannerResponse {
-  String errorMsg;
-  int errorCode;
+class BannerResponse extends BaseResponse {
   List<BannerModel> data;
 
-  BannerResponse(this.errorMsg, this.errorCode, this.data);
+  BannerResponse(this.data, int errorCode, String errorMsg)
+      : super(errorCode, errorMsg);
 
   factory BannerResponse.fromJson(Map<String, dynamic> json) =>
       _$BannerResponseFromJson(json);

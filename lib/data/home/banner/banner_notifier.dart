@@ -7,10 +7,13 @@ class BannerNotifier with ChangeNotifier {
 
   BannerResponse get response => _response;
 
-  void getBanner() {
-    Application.netManager.get(Api.HOME_BANNER).then((response) {
-      _response = BannerResponse.fromJson(response.data);
+  Future<BannerResponse> getBanner() {
+    return Application.netManager
+        .get(Api.HOME_BANNER)
+        .then<BannerResponse>((res) {
+      _response = BannerResponse.fromJson(res.data);
       notifyListeners();
+      return Future.value(_response);
     });
   }
 }

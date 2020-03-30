@@ -7,10 +7,13 @@ class ArticleNotifier with ChangeNotifier {
 
   ArticleListResponse get response => _response;
 
-  void getArticleList() {
-    Application.netManager.get(Api.ARTICLE_LIST).then((response) {
-      _response = ArticleListResponse.fromJson(response.data);
+  Future<ArticleListResponse> getArticleList() {
+    return Application.netManager
+        .get(Api.ARTICLE_LIST)
+        .then<ArticleListResponse>((res) {
+      _response = ArticleListResponse.fromJson(res.data);
       notifyListeners();
+      return Future.value(_response);
     });
   }
 }

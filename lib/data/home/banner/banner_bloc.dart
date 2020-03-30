@@ -1,4 +1,4 @@
-import 'package:wanandroid_flutter/base/bloc/base_bloc.dart';
+import 'package:wanandroid_flutter/base/base_bloc.dart';
 import 'dart:async';
 import 'banner_model.dart';
 import 'package:wanandroid_flutter/common/application.dart';

@@ -1,14 +1,14 @@
 import 'package:wanandroid_flutter/common/common_import.dart';
+import 'package:wanandroid_flutter/base/base_response.dart';
 
 part 'article_list_model.g.dart';
 
 @JsonSerializable()
-class ArticleListResponse {
+class ArticleListResponse extends BaseResponse {
   ArticleListPage data;
-  int errorCode;
-  String errorMsg;
 
-  ArticleListResponse(this.data, this.errorCode, this.errorMsg);
+  ArticleListResponse(this.data, int errorCode, String errorMsg)
+      : super(errorCode, errorMsg);
 
   factory ArticleListResponse.fromJson(Map<String, dynamic> json) =>
       _$ArticleListResponseFromJson(json);

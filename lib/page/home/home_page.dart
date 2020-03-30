@@ -3,7 +3,7 @@ import 'package:flukit/flukit.dart';
 import 'package:flutter/material.dart';
 import 'package:provide/provide.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:wanandroid_flutter/base/widget/base_page.dart';
+import 'package:wanandroid_flutter/base/base_page.dart';
 import 'package:wanandroid_flutter/data/home/banner/banner_notifier.dart';
 
 import 'package:wanandroid_flutter/common/object_util.dart';
@@ -11,6 +11,7 @@ import 'package:wanandroid_flutter/data/home/banner/banner_model.dart';
 import 'package:wanandroid_flutter/data/home/article_list/article_list_notifier.dart';
 import 'package:wanandroid_flutter/data/home/article_list/article_list_model.dart';
 import 'package:wanandroid_flutter/page/home/article_item.dart';
+import 'package:wanandroid_flutter/common/common_import.dart';
 
 class HomePage extends BasePage {
   @override
@@ -23,8 +24,7 @@ class _HomeState extends BasePageState<HomePage> {
   @override
   Widget build(BuildContext context) {
     Observable.just(1).delay(Duration(milliseconds: 100)).listen((_) {
-      Provide.value<BannerNotifier>(context).getBanner();
-      Provide.value<ArticleNotifier>(context).getArticleList();
+      _refreshData(context);
     });
     return Scaffold(
       appBar: AppBar(
@@ -50,15 +50,16 @@ class _HomeState extends BasePageState<HomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(onPressed: () {
-        Provide.value<BannerNotifier>(context).getBanner();
-        Provide.value<ArticleNotifier>(context).getArticleList();
+        _refreshData(context);
       }),
     );
   }
 
-  Future<Null> _refreshData(BuildContext context) {
-    Provide.value<BannerNotifier>(context).getBanner();
-    Provide.value<ArticleNotifier>(context).getArticleList();
+  Future<List<BaseResponse>> _refreshData(BuildContext context) {
+    List<Future<BaseResponse>> list = new List();
+    list.add(Provide.value<BannerNotifier>(context).getBanner());
+    list.add(Provide.value<ArticleNotifier>(context).getArticleList());
+    return Future.wait(list);
   }
 
   Widget buildBanner(BuildContext context, List<BannerModel> list) {

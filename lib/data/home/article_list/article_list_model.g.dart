@@ -18,9 +18,9 @@ ArticleListResponse _$ArticleListResponseFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$ArticleListResponseToJson(
         ArticleListResponse instance) =>
     <String, dynamic>{
-      'data': instance.data,
       'errorCode': instance.errorCode,
-      'errorMsg': instance.errorMsg
+      'errorMsg': instance.errorMsg,
+      'data': instance.data
     };
 
 ArticleListPage _$ArticleListPageFromJson(Map<String, dynamic> json) {

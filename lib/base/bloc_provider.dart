@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'base_bloc.dart';
+import 'package:wanandroid_flutter/base/base_bloc.dart';
 
 /// 配合 /base/bloc/base_bloc.dart 中的 BaseBLoC 一起使用具备 dispose 能力的 BLoC
 class BLoCProvider<T extends BaseBLoC> extends StatefulWidget {

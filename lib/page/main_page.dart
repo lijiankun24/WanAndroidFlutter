@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wanandroid_flutter/base/widget/base_page.dart';
+import 'package:wanandroid_flutter/base/base_page.dart';
 import 'events_page.dart';
 import 'package:wanandroid_flutter/page/home/home_page.dart';
 import 'repos_page.dart';

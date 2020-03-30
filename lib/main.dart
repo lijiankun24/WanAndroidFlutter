@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/common/application.dart';
 import 'page/main_page.dart';
-import 'base/bloc/bloc_provider.dart';
+import 'package:wanandroid_flutter/base/bloc_provider.dart';
 import 'data/home/banner/banner_bloc.dart';
 import 'data/home/banner/banner_notifier.dart';
 import 'package:wanandroid_flutter/common/common_import.dart';
