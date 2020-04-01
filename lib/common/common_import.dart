@@ -6,3 +6,6 @@ export 'package:json_annotation/json_annotation.dart';
 export 'package:flutter/material.dart';
 export 'package:provide/provide.dart';
 export 'package:wanandroid_flutter/base/base_response.dart';
+
+export 'package:wanandroid_flutter/utils/object_utils.dart';
+export 'package:wanandroid_flutter/utils/navigator_utils.dart';

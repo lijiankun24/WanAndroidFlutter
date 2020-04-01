@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/data/home/article_list/article_list_model.dart';
-import 'package:wanandroid_flutter/common/object_util.dart';
+import 'package:wanandroid_flutter/utils/object_utils.dart';
 
 class ArticleItem extends StatelessWidget {
   final ArticleModel articleModel;
+  final ValueChanged<ArticleModel> valueChanged;
 
-  ArticleItem(this.articleModel);
+  ArticleItem({Key key, this.articleModel, this.valueChanged})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class ArticleItem extends StatelessWidget {
         ObjectUtil.isEmpty(articleModel.desc) ? 16.5 : 10;
     String publishTime = ObjectUtil.timeToDate(articleModel.publishTime);
     return InkWell(
-      onTap: () {},
+      onTap: () => valueChanged(articleModel),
       child: Container(
           alignment: Alignment.centerLeft,
           padding: EdgeInsets.only(

@@ -6,7 +6,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:wanandroid_flutter/base/base_page.dart';
 import 'package:wanandroid_flutter/data/home/banner/banner_notifier.dart';
 
-import 'package:wanandroid_flutter/common/object_util.dart';
+import 'package:wanandroid_flutter/utils/object_utils.dart';
 import 'package:wanandroid_flutter/data/home/banner/banner_model.dart';
 import 'package:wanandroid_flutter/data/home/article_list/article_list_notifier.dart';
 import 'package:wanandroid_flutter/data/home/article_list/article_list_model.dart';
@@ -49,9 +49,6 @@ class _HomeState extends BasePageState<HomePage> {
           return _refreshData(context);
         },
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        _refreshData(context);
-      }),
     );
   }
 
@@ -81,7 +78,16 @@ class _HomeState extends BasePageState<HomePage> {
       return Container(height: 0.0);
     }
     List<Widget> listItem = list.map((articleModel) {
-      return ArticleItem(articleModel);
+      return ArticleItem(
+        articleModel: articleModel,
+        valueChanged: (article) {
+          NavigatorUtils.pushWeb(
+            context,
+            url: article.link,
+            title: article.title,
+          );
+        },
+      );
     }).toList();
     return Column(children: listItem);
   }
