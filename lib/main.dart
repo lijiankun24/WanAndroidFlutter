@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:wanandroid_flutter/common/application.dart';
-import 'page/main_page.dart';
 import 'package:wanandroid_flutter/base/bloc_provider.dart';
+import 'package:wanandroid_flutter/common/application.dart';
+import 'package:wanandroid_flutter/common/common_import.dart';
+
+import 'data/home/article_list/article_list_notifier.dart';
 import 'data/home/banner/banner_bloc.dart';
 import 'data/home/banner/banner_notifier.dart';
-import 'package:wanandroid_flutter/common/common_import.dart';
-import 'data/home/article_list/article_list_notifier.dart';
+import 'page/main_page.dart';
 
 void main() {
   Application.globalInit(() {
@@ -46,9 +47,10 @@ class ProviderApp extends StatelessWidget {
     return MaterialApp(
       title: 'wanandroid_flutter',
       home: MainPage(),
-      theme: ThemeData(
-        brightness: Brightness.light,
+      theme: ThemeData.light().copyWith(
         primaryColor: Colors.lightBlue,
+        accentColor: Colors.lightBlue,
+        indicatorColor: Colors.white,
       ),
     );
   }

@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:provide/provide.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:wanandroid_flutter/base/base_page.dart';
-import 'package:wanandroid_flutter/data/home/banner/banner_notifier.dart';
-
-import 'package:wanandroid_flutter/utils/object_utils.dart';
-import 'package:wanandroid_flutter/data/home/banner/banner_model.dart';
-import 'package:wanandroid_flutter/data/home/article_list/article_list_notifier.dart';
-import 'package:wanandroid_flutter/data/home/article_list/article_list_model.dart';
-import 'package:wanandroid_flutter/page/home/article_item.dart';
 import 'package:wanandroid_flutter/common/common_import.dart';
+import 'package:wanandroid_flutter/data/home/article_list/article_list_model.dart';
+import 'package:wanandroid_flutter/data/home/article_list/article_list_notifier.dart';
+import 'package:wanandroid_flutter/data/home/banner/banner_model.dart';
+import 'package:wanandroid_flutter/data/home/banner/banner_notifier.dart';
+import 'package:wanandroid_flutter/page/home/article_item.dart';
+import 'package:wanandroid_flutter/utils/object_utils.dart';
+import 'banner_indicator.dart';
 
 class HomePage extends BasePage {
   @override
@@ -27,9 +27,6 @@ class _HomeState extends BasePageState<HomePage> {
       _refreshData(context);
     });
     return Scaffold(
-      appBar: AppBar(
-        title: Text('首页'),
-      ),
       body: RefreshIndicator(
         child: ListView(
           children: <Widget>[
@@ -66,8 +63,21 @@ class _HomeState extends BasePageState<HomePage> {
     return AspectRatio(
       aspectRatio: 16 / 9,
       child: Swiper(
+        circular: true,
+        interval: const Duration(seconds: 5),
+        indicator: BannerIndicator(),
+        indicatorAlignment: AlignmentDirectional.bottomEnd,
         children: list.map((banner) {
-          return new CachedNetworkImage(imageUrl: banner.imagePath);
+          return InkWell(
+            child: new CachedNetworkImage(imageUrl: banner.imagePath),
+            onTap: () {
+              NavigatorUtils.pushWeb(
+                context,
+                url: banner.url,
+                title: banner.title,
+              );
+            },
+          );
         }).toList(),
       ),
     );

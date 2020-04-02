@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'dart:async';
+import 'package:wanandroid_flutter/common/common_import.dart';
 
 class WebScaffold extends StatefulWidget {
   final String title;
@@ -12,15 +14,30 @@ class WebScaffold extends StatefulWidget {
 }
 
 class _WebState extends State<WebScaffold> {
+  int _curIndex = 1;
+
+  void loadFinished(String url) {
+    setState(() {
+      _curIndex = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: WebView(
-        initialUrl: widget.url,
-        javascriptMode: JavascriptMode.unrestricted,
+      body: IndexedStack(
+        index: _curIndex,
+        children: <Widget>[
+          WebView(
+            initialUrl: widget.url,
+            javascriptMode: JavascriptMode.unrestricted,
+            onPageFinished: this.loadFinished,
+          ),
+          LoadingView(),
+        ],
       ),
     );
   }

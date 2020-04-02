@@ -8,7 +8,9 @@ class NavigatorUtils {
     String url,
     String title,
   }) {
-    if (context == null || ObjectUtil.isEmpty(url)) {
+    if (context == null ||
+        ObjectUtil.isEmpty(url) ||
+        ObjectUtil.isEmpty(title)) {
       return;
     }
     Navigator.push(
