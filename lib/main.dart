@@ -6,6 +6,7 @@ import 'package:wanandroid_flutter/common/common_import.dart';
 import 'data/home/article_list/article_list_notifier.dart';
 import 'data/home/banner/banner_bloc.dart';
 import 'data/home/banner/banner_notifier.dart';
+import 'data/repos/repos_list_notifier.dart';
 import 'page/main_page.dart';
 
 void main() {
@@ -35,9 +36,11 @@ class MyApp extends StatelessWidget {
 void testProvider() {
   var bannerNotifier = new BannerNotifier();
   var articleListNotifier = new ArticleNotifier();
+  var reposListNotifier = new ReposListNotifier();
   var provider = new Providers();
   provider..provide(Provider<BannerNotifier>.value(bannerNotifier));
   provider..provide(Provider<ArticleNotifier>.value(articleListNotifier));
+  provider..provide(Provider<ReposListNotifier>.value(reposListNotifier));
   runApp(ProviderNode(child: ProviderApp(), providers: provider));
 }
 
