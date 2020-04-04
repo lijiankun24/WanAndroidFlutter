@@ -4,6 +4,7 @@ import 'package:wanandroid_flutter/base/base_page.dart';
 import 'package:wanandroid_flutter/common/common_import.dart';
 import 'package:wanandroid_flutter/data/repos/repos_list_notifier.dart';
 import 'package:wanandroid_flutter/data/repos/repos_list_model.dart';
+import 'repos_item.dart';
 
 class ReposPage extends BasePage {
   @override
@@ -49,7 +50,12 @@ class _ReposState extends BasePageState<ReposPage> {
       return Container(height: 0);
     }
     List<Widget> itemList = list.map((model) {
-      return Text(model.title);
+      return ReposItem(
+        reposModel: model,
+        valueChanged: (reposModel) {
+          /// todo 跳转至详情页
+        },
+      );
     }).toList();
     return Column(
       children: itemList,
