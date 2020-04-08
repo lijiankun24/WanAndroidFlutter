@@ -34,6 +34,7 @@ class ArticleItem extends StatelessWidget {
                   articleModel.title,
                   style: TextStyle(color: Color(0xff222333), fontSize: 16),
                   maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               Visibility(
@@ -45,7 +46,8 @@ class ArticleItem extends StatelessWidget {
                   child: Text(
                     articleModel.desc,
                     style: TextStyle(color: Color(0xff8d8d98), fontSize: 12),
-                    maxLines: 3,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ),
