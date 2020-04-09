@@ -7,7 +7,10 @@ class Api {
   static const HOME_BANNER = '/banner/json';
 
   /// 首页 文章列表
-  static const ARTICLE_LIST = '/article/list/0/json';
+  static const ARTICLE_LIST = '/article/list/1/json';
+
+  /// 项目分类 (首页的第二个tab)
+  static const REPOS_CAT = '/project/tree/json';
 
   /// 项目 (首页的第二个tab)
   static const REPOS_LIST = "/article/listproject/0/json";

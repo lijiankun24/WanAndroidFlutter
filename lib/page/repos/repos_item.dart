@@ -11,7 +11,7 @@ class ReposItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double titleBottomPadding = ObjectUtil.isEmpty(reposModel.desc) ? 16.5 : 10;
-    var publistTimeStr = ObjectUtil.timeToDate(reposModel.publishTime);
+    var publishTimeStr = ObjectUtil.timeToDate(reposModel.publishTime);
     return InkWell(
       onTap: null,
       child: Container(
@@ -50,6 +50,9 @@ class ReposItem extends StatelessWidget {
                           padding: const EdgeInsets.only(
                             bottom: 16.5,
                           ),
+                          constraints: BoxConstraints(
+                            minHeight: 60,
+                          ),
                           child: Text(
                             reposModel.desc,
                             style: TextStyle(
@@ -57,7 +60,6 @@ class ReposItem extends StatelessWidget {
                               fontSize: 12,
                             ),
                             maxLines: 3,
-
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
@@ -85,7 +87,7 @@ class ReposItem extends StatelessWidget {
                               bottom: 16.5,
                             ),
                             child: Text(
-                              publistTimeStr,
+                              publishTimeStr,
                               style: TextStyle(
                                 color: Color(0xff8d8d98),
                                 fontSize: 12,

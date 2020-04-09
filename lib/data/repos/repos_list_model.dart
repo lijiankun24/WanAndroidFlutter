@@ -1,5 +1,4 @@
 import 'package:wanandroid_flutter/common/common_import.dart';
-import 'package:wanandroid_flutter/base/base_response.dart';
 
 part 'repos_list_model.g.dart';
 
