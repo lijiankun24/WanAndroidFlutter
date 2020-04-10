@@ -1,7 +1,7 @@
 import '../data/net_manager.dart';
 import '../data/api.dart';
 import 'dart:io';
-
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,6 +12,10 @@ class Application {
 
   static Future globalInit(VoidCallback callback) async {
     netManager = NetManager(Api.BASE_URL);
+    netManager.addInterceptor(LogInterceptor(
+      requestBody: true,
+      responseBody: true,
+    ));
     callback();
     if (Platform.isAndroid) {
       SystemChrome.setSystemUIOverlayStyle(

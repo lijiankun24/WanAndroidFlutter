@@ -29,11 +29,11 @@ class NetManager {
     return _netManager;
   }
 
-  void addInterceptor(InterceptorsWrapper interceptor) {
+  void addInterceptor(Interceptor interceptor) {
     _dio.interceptors.add(interceptor);
   }
 
-  void addInterceptors(List<InterceptorsWrapper> interceptors) {
+  void addInterceptors(List<Interceptor> interceptors) {
     _dio.interceptors.clear();
     _dio.interceptors.addAll(interceptors);
   }

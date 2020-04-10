@@ -13,5 +13,5 @@ class Api {
   static const REPOS_CAT = '/project/tree/json';
 
   /// 项目 (首页的第二个tab)
-  static const REPOS_LIST = "/article/listproject/0/json";
+  static const REPOS_LIST = "/project/list/1/json";
 }

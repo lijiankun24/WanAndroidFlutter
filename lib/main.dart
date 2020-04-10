@@ -7,6 +7,7 @@ import 'data/home/article_list/article_list_notifier.dart';
 import 'data/home/banner/banner_bloc.dart';
 import 'data/home/banner/banner_notifier.dart';
 import 'data/repos/repos_list_notifier.dart';
+import 'data/repos/repos_cat_notifier.dart';
 import 'page/main_page.dart';
 
 void main() {
@@ -37,10 +38,12 @@ void testProvider() {
   var bannerNotifier = new BannerNotifier();
   var articleListNotifier = new ArticleNotifier();
   var reposListNotifier = new ReposListNotifier();
+  var reposCatNotifier = new ReposCatNotifier();
   var provider = new Providers();
   provider..provide(Provider<BannerNotifier>.value(bannerNotifier));
   provider..provide(Provider<ArticleNotifier>.value(articleListNotifier));
   provider..provide(Provider<ReposListNotifier>.value(reposListNotifier));
+  provider..provide(Provider<ReposCatNotifier>.value(reposCatNotifier));
   runApp(ProviderNode(child: ProviderApp(), providers: provider));
 }
 

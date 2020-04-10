@@ -6,9 +6,9 @@ class ReposListNotifier with ChangeNotifier {
 
   ReposListModelResponse get response => _response;
 
-  Future<ReposListModelResponse> getReposList() {
+  Future<ReposListModelResponse> getReposList({Map params}) {
     return Application.netManager
-        .get(Api.REPOS_LIST)
+        .get(Api.REPOS_LIST, params: params)
         .then<ReposListModelResponse>((res) {
       _response = ReposListModelResponse.fromJson(res.data);
       notifyListeners();
