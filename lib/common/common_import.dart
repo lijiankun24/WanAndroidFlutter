@@ -10,3 +10,4 @@ export 'package:wanandroid_flutter/base/base_response.dart';
 export 'package:wanandroid_flutter/utils/object_utils.dart';
 export 'package:wanandroid_flutter/utils/navigator_utils.dart';
 export 'package:wanandroid_flutter/widgets/loading_view.dart';
+export 'package:wanandroid_flutter/widgets/loading_dialog.dart';

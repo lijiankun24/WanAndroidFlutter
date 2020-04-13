@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:wanandroid_flutter/base/base_page.dart';
 import 'package:wanandroid_flutter/common/common_import.dart';
-import 'package:wanandroid_flutter/data/repos/repos_list_notifier.dart';
+import 'package:wanandroid_flutter/data/repos/repos_cat_model.dart';
 import 'package:wanandroid_flutter/data/repos/repos_cat_notifier.dart';
 import 'package:wanandroid_flutter/data/repos/repos_list_model.dart';
-import 'package:wanandroid_flutter/data/repos/repos_cat_model.dart';
+import 'package:wanandroid_flutter/data/repos/repos_list_notifier.dart';
+
 import 'repos_item.dart';
 
 class ReposPage extends BasePage {
@@ -19,19 +19,11 @@ class ReposPage extends BasePage {
 }
 
 class _ReposState extends BasePageState<ReposPage> {
+  Function _dismissLoadingFun;
+
   @override
   Widget build(BuildContext context) {
-    Observable.just(1).delay(Duration(milliseconds: 100)).listen((_) {
-      Provide.value<ReposCatNotifier>(context).getReposCat().then((response) {
-        this.widget.reposCatModelList = response.data;
-        int cid;
-        if (!ObjectUtil.isEmpty(this.widget.reposCatModelList)) {
-          this.widget.curReposCat = this.widget.reposCatModelList[0];
-          cid = this.widget.curReposCat?.id;
-        }
-        _refreshData(context, cid: cid);
-      });
-    });
+    _refreshCat(context);
     return Provide<ReposCatNotifier>(
       builder: (context, child, notifier) {
         return DefaultTabController(
@@ -39,8 +31,9 @@ class _ReposState extends BasePageState<ReposPage> {
           child: Scaffold(
             appBar: AppBar(
               title: TabLayout(this.widget.reposCatModelList, (reposCat) {
+                _showLoading();
                 this.widget.curReposCat = reposCat;
-                _refreshData(context, cid: reposCat.id);
+                _refreshList(context, cid: reposCat.id);
               }),
             ),
             body: Center(
@@ -49,13 +42,16 @@ class _ReposState extends BasePageState<ReposPage> {
                   children: <Widget>[
                     Provide<ReposListNotifier>(
                       builder: (context, child, notifier) {
+                        if (_dismissLoadingFun != null) {
+                          _dismissLoadingFun();
+                        }
                         return buildListItem(notifier?.response?.data?.datas);
                       },
                     ),
                   ],
                 ),
                 onRefresh: () {
-                  return _refreshData(context,
+                  return _refreshList(context,
                       cid: this.widget.curReposCat?.id);
                 },
               ),
@@ -66,13 +62,42 @@ class _ReposState extends BasePageState<ReposPage> {
     );
   }
 
-  Future<ReposListModelResponse> _refreshData(BuildContext context, {int cid}) {
+  void _refreshCat(BuildContext context) {
+//    _showLoading();
+    Provide.value<ReposCatNotifier>(context).getReposCat().then((response) {
+      this.widget.reposCatModelList = response.data;
+      int cid;
+      if (!ObjectUtil.isEmpty(this.widget.reposCatModelList)) {
+        this.widget.curReposCat = this.widget.reposCatModelList[0];
+        cid = this.widget.curReposCat?.id;
+      }
+      _refreshList(context, cid: cid);
+    });
+  }
+
+  Future<ReposListModelResponse> _refreshList(BuildContext context, {int cid}) {
     var params = {};
     if (!ObjectUtil.isEmpty(cid)) {
       params.addAll({'cid': cid});
     }
     return Provide.value<ReposListNotifier>(context)
         .getReposList(params: params);
+  }
+
+  _showLoading() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return new LoadingDialog(
+          dismissLoading: _dismissLoading,
+          outsideDismiss: false,
+        );
+      },
+    );
+  }
+
+  _dismissLoading(Function dismissLoadingFun) {
+    _dismissLoadingFun = dismissLoadingFun;
   }
 
   Widget buildListItem(List<ReposModel> list) {
