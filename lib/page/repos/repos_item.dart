@@ -13,7 +13,7 @@ class ReposItem extends StatelessWidget {
     double titleBottomPadding = ObjectUtil.isEmpty(reposModel.desc) ? 16.5 : 10;
     var publishTimeStr = ObjectUtil.timeToDate(reposModel.publishTime);
     return InkWell(
-      onTap: null,
+      onTap: () => valueChanged(reposModel),
       child: Container(
         alignment: Alignment.centerLeft,
         padding: const EdgeInsets.only(

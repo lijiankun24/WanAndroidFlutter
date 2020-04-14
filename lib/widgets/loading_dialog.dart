@@ -17,7 +17,7 @@ class LoadingDialog extends StatefulWidget {
 }
 
 class LoadingState extends State<LoadingDialog> {
-  void _dismiss() {
+  void _dismiss(BuildContext context) {
     Navigator.of(context).pop();
   }
 
@@ -34,13 +34,17 @@ class LoadingState extends State<LoadingDialog> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: widget.outsideDismiss ? _dismiss : null,
+        onTap: () {
+          if (widget.outsideDismiss != null) {
+            _dismiss(context);
+          }
+        },
         child: Material(
           type: MaterialType.transparency,
           child: Center(
             child: Container(
-              width: 120.0,
-              height: 120.0,
+              width: 80.0,
+              height: 80.0,
               decoration: ShapeDecoration(
                 color: Color(0xffffffff),
                 shape: RoundedRectangleBorder(
@@ -53,7 +57,13 @@ class LoadingState extends State<LoadingDialog> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  new CircularProgressIndicator(),
+                  SizedBox(
+                    width: 24.0,
+                    height: 24.0,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2.0,
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Text(

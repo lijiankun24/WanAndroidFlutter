@@ -44,6 +44,7 @@ class _ReposState extends BasePageState<ReposPage> {
                       builder: (context, child, notifier) {
                         if (_dismissLoadingFun != null) {
                           _dismissLoadingFun();
+                          _dismissLoadingFun = null;
                         }
                         return buildListItem(notifier?.response?.data?.datas);
                       },
@@ -63,7 +64,6 @@ class _ReposState extends BasePageState<ReposPage> {
   }
 
   void _refreshCat(BuildContext context) {
-//    _showLoading();
     Provide.value<ReposCatNotifier>(context).getReposCat().then((response) {
       this.widget.reposCatModelList = response.data;
       int cid;
@@ -108,7 +108,7 @@ class _ReposState extends BasePageState<ReposPage> {
       return ReposItem(
         reposModel: model,
         valueChanged: (reposModel) {
-          /// todo 跳转至详情页
+          NavigatorUtils.pushWeb(context, url: model.link, title: model.title);
         },
       );
     }).toList();
