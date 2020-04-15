@@ -9,9 +9,15 @@ class Api {
   /// 首页 文章列表
   static const ARTICLE_LIST = '/article/list/1/json';
 
-  /// 项目分类 (首页的第二个tab)
+  /// 项目分类 (第二个tab)
   static const REPOS_CAT = '/project/tree/json';
 
-  /// 项目 (首页的第二个tab)
+  /// 某个项目分类列表 (第二个tab)
   static const REPOS_LIST = "/project/list/1/json";
+
+  /// 微信公众号分类（第三个tab）
+  static const WX_ARTICLE_CAT = "/wxarticle/chapters/json";
+
+  /// 某个微信公众号分类列表（第三个tab）
+  static const WX_ARTICLE_LIST = '/wxarticle/list/408/1/json';
 }
