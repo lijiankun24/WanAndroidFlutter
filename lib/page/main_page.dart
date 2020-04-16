@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/base/base_page.dart';
-import 'events_page.dart';
+import 'package:wanandroid_flutter/page/wx_article/wx_article.dart';
 import 'package:wanandroid_flutter/page/home/home_page.dart';
 import 'package:wanandroid_flutter/page/repos/repos_page.dart';
 import 'system_page.dart';
@@ -17,7 +17,7 @@ class _MainState extends BasePageState<MainPage> {
   var _pages = <Widget>[
     HomePage(),
     ReposPage(),
-    EventsPage(),
+    WxArticlePage(),
     SystemPage(),
   ];
 
@@ -42,7 +42,7 @@ class _MainState extends BasePageState<MainPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.assignment),
-            title: Text('动态'),
+            title: Text('微信'),
             backgroundColor: Colors.lightBlue,
           ),
           BottomNavigationBarItem(

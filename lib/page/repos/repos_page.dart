@@ -5,6 +5,7 @@ import 'package:wanandroid_flutter/data/repos/repos_cat_model.dart';
 import 'package:wanandroid_flutter/data/repos/repos_cat_notifier.dart';
 import 'package:wanandroid_flutter/data/repos/repos_list_model.dart';
 import 'package:wanandroid_flutter/data/repos/repos_list_notifier.dart';
+import 'package:wanandroid_flutter/widgets/tab_layout.dart';
 
 import 'repos_item.dart';
 
@@ -30,7 +31,8 @@ class _ReposState extends BasePageState<ReposPage> {
           length: this.widget.reposCatModelList?.length,
           child: Scaffold(
             appBar: AppBar(
-              title: TabLayout(this.widget.reposCatModelList, (reposCat) {
+              title: TabLayout<ReposCatModel>(this.widget.reposCatModelList,
+                  (reposCat) {
                 _showLoading();
                 this.widget.curReposCat = reposCat;
                 _refreshList(context, cid: reposCat.id);
@@ -114,26 +116,6 @@ class _ReposState extends BasePageState<ReposPage> {
     }).toList();
     return Column(
       children: itemList,
-    );
-  }
-}
-
-class TabLayout extends StatelessWidget {
-  final List<ReposCatModel> reposCatModelList;
-  final ValueChanged<ReposCatModel> valueChanged;
-
-  TabLayout(this.reposCatModelList, this.valueChanged);
-
-  @override
-  Widget build(BuildContext context) {
-    return TabBar(
-      isScrollable: true,
-      tabs: reposCatModelList.map((reposCatModel) {
-        return Tab(
-          text: reposCatModel.name,
-        );
-      }).toList(),
-      onTap: (reposCatIndex) => valueChanged(reposCatModelList[reposCatIndex]),
     );
   }
 }
