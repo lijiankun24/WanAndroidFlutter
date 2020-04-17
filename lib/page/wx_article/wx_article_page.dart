@@ -6,6 +6,7 @@ import 'package:wanandroid_flutter/data/wx_article/wx_article_cat_model.dart';
 import 'package:wanandroid_flutter/data/wx_article/wx_article_list_notifier.dart';
 import 'package:wanandroid_flutter/data/wx_article/wx_article_list_model.dart';
 import 'package:wanandroid_flutter/widgets/tab_layout.dart';
+import 'wx_article_item.dart';
 
 class WxArticlePage extends BasePage {
   @override
@@ -72,11 +73,7 @@ class _WxArticleState extends BasePageState<WxArticlePage> {
       return Container(height: 0);
     }
     List<Widget> itemList = list.map((model) {
-      return Container(
-        alignment: Alignment.centerLeft,
-        height: 80,
-        child: Text(model.title),
-      );
+      return WxArticleItem(model);
     }).toList();
     return Column(
       children: itemList,
