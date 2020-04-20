@@ -6,9 +6,9 @@ class WxArticleListNotifier with ChangeNotifier {
 
   WxArticleListModelResponse get response => _response;
 
-  Future<WxArticleListModelResponse> getWxArticleList() {
+  Future<WxArticleListModelResponse> getWxArticleList(int id) {
     return Application.netManager
-        .get(Api.WX_ARTICLE_LIST)
+        .get(sprintf(Api.WX_ARTICLE_LIST, [id]))
         .then<WxArticleListModelResponse>((res) {
       _response = WxArticleListModelResponse.fromJson(res.data);
       notifyListeners();

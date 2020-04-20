@@ -17,10 +17,12 @@ class WxArticlePage extends BasePage {
 
 class _WxArticleState extends BasePageState<WxArticlePage> {
   List<WxArticleCatModel> wxArticleCatList;
+  int curWxArticleCatId = 408;
+  Function _dismissLoadingFun;
 
   @override
   Widget build(BuildContext context) {
-    _refreshWxArticleCatList(context);
+    _refreshWxArticleCat(context);
     return Provide<WxArticleCatNotifier>(
       builder: (context, child, snapshot) {
         return DefaultTabController(
@@ -29,7 +31,10 @@ class _WxArticleState extends BasePageState<WxArticlePage> {
             appBar: AppBar(
               title: TabLayout<WxArticleCatModel>(
                 wxArticleCatList,
-                (model) {},
+                (model) {
+                  _showLoading();
+                  _refreshWxArticleList(context, id: model.id);
+                },
               ),
             ),
             body: RefreshIndicator(
@@ -37,6 +42,10 @@ class _WxArticleState extends BasePageState<WxArticlePage> {
                 children: <Widget>[
                   Provide<WxArticleListNotifier>(
                     builder: (context, child, snapshot) {
+                      if (_dismissLoadingFun != null) {
+                        _dismissLoadingFun();
+                        _dismissLoadingFun = null;
+                      }
                       return buildListItem(snapshot?.response?.data?.datas);
                     },
                   ),
@@ -52,20 +61,40 @@ class _WxArticleState extends BasePageState<WxArticlePage> {
     );
   }
 
-  void _refreshWxArticleCatList(BuildContext context) {
+  void _refreshWxArticleCat(BuildContext context) {
     Provide.value<WxArticleCatNotifier>(context)
         .getWxArticleCat()
         .then((response) {
       wxArticleCatList = response.data;
       if (!ObjectUtil.isEmpty(wxArticleCatList)) {
-        _refreshWxArticleList(context, cid: wxArticleCatList[0].id);
+        _refreshWxArticleList(context, id: wxArticleCatList[0].id);
       }
     });
   }
 
   Future<WxArticleListModelResponse> _refreshWxArticleList(BuildContext context,
-      {int cid}) {
-    return Provide.value<WxArticleListNotifier>(context).getWxArticleList();
+      {int id}) {
+    if (id != null) {
+      curWxArticleCatId = id;
+    }
+    return Provide.value<WxArticleListNotifier>(context)
+        .getWxArticleList(curWxArticleCatId);
+  }
+
+  _showLoading() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return new LoadingDialog(
+          dismissLoading: _dismissLoading,
+          outsideDismiss: false,
+        );
+      },
+    );
+  }
+
+  _dismissLoading(Function dismissLoadingFun) {
+    _dismissLoadingFun = dismissLoadingFun;
   }
 
   Widget buildListItem(List<WxArticleModel> list) {

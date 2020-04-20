@@ -19,5 +19,5 @@ class Api {
   static const WX_ARTICLE_CAT = "/wxarticle/chapters/json";
 
   /// 某个微信公众号分类列表（第三个tab）
-  static const WX_ARTICLE_LIST = '/wxarticle/list/408/1/json';
+  static const WX_ARTICLE_LIST = '/wxarticle/list/%d/1/json';
 }
