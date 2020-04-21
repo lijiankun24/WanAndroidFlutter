@@ -1,6 +1,5 @@
 import 'package:wanandroid_flutter/common/common_import.dart';
-import 'package:wanandroid_flutter/data/repos/repos_cat_model.dart';
-import 'package:wanandroid_flutter/data/wx_article/wx_article_cat_model.dart';
+import 'package:wanandroid_flutter/data/cat_model.dart';
 
 class TabLayout<T> extends StatelessWidget {
   final List<T> reposCatModelList;
@@ -22,9 +21,7 @@ class TabLayout<T> extends StatelessWidget {
   }
 
   String getCatName(T catModel) {
-    if (catModel is ReposCatModel) {
-      return catModel.name;
-    } else if (catModel is WxArticleCatModel) {
+    if (catModel is CatModel) {
       return catModel.name;
     }
     return "";

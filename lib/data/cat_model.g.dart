@@ -1,33 +1,30 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'repos_cat_model.dart';
+part of 'cat_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ReposCatModelResponse _$ReposCatModelResponseFromJson(
-    Map<String, dynamic> json) {
-  return ReposCatModelResponse(
+CatModelResponse _$CatModelResponseFromJson(Map<String, dynamic> json) {
+  return CatModelResponse(
       (json['data'] as List)
-          ?.map((e) => e == null
-              ? null
-              : ReposCatModel.fromJson(e as Map<String, dynamic>))
+          ?.map((e) =>
+              e == null ? null : CatModel.fromJson(e as Map<String, dynamic>))
           ?.toList(),
       json['errorCode'] as int,
       json['errorMsg'] as String);
 }
 
-Map<String, dynamic> _$ReposCatModelResponseToJson(
-        ReposCatModelResponse instance) =>
+Map<String, dynamic> _$CatModelResponseToJson(CatModelResponse instance) =>
     <String, dynamic>{
       'errorCode': instance.errorCode,
       'errorMsg': instance.errorMsg,
       'data': instance.data
     };
 
-ReposCatModel _$ReposCatModelFromJson(Map<String, dynamic> json) {
-  return ReposCatModel(
+CatModel _$CatModelFromJson(Map<String, dynamic> json) {
+  return CatModel(
       (json['children'] as List)?.map((e) => e as String)?.toList(),
       json['courseId'] as int,
       json['id'] as int,
@@ -38,8 +35,7 @@ ReposCatModel _$ReposCatModelFromJson(Map<String, dynamic> json) {
       json['visible'] as int);
 }
 
-Map<String, dynamic> _$ReposCatModelToJson(ReposCatModel instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$CatModelToJson(CatModel instance) => <String, dynamic>{
       'children': instance.children,
       'courseId': instance.courseId,
       'id': instance.id,

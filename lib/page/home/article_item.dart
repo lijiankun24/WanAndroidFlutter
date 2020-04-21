@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:wanandroid_flutter/data/home/article_list/article_list_model.dart';
+import 'package:wanandroid_flutter/data/list_item_model.dart';
 import 'package:wanandroid_flutter/utils/object_utils.dart';
 
 class ArticleItem extends StatelessWidget {
-  final ArticleModel articleModel;
-  final ValueChanged<ArticleModel> valueChanged;
+  final ListItemModel articleModel;
+  final ValueChanged<ListItemModel> valueChanged;
 
   ArticleItem({Key key, this.articleModel, this.valueChanged})
       : super(key: key);

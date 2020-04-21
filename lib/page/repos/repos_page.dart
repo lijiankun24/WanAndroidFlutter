@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/base/base_page.dart';
 import 'package:wanandroid_flutter/common/common_import.dart';
-import 'package:wanandroid_flutter/data/repos/repos_cat_model.dart';
+import 'package:wanandroid_flutter/data/cat_model.dart';
 import 'package:wanandroid_flutter/data/repos/repos_cat_notifier.dart';
-import 'package:wanandroid_flutter/data/repos/repos_list_model.dart';
+import 'package:wanandroid_flutter/data/list_item_model.dart';
 import 'package:wanandroid_flutter/data/repos/repos_list_notifier.dart';
 import 'package:wanandroid_flutter/widgets/tab_layout.dart';
 
 import 'repos_item.dart';
 
 class ReposPage extends BasePage {
-  List<ReposCatModel> reposCatModelList;
-  ReposCatModel curReposCat;
+  List<CatModel> reposCatModelList;
+  CatModel curReposCat;
 
   @override
   BasePageState createState() {
@@ -31,7 +31,7 @@ class _ReposState extends BasePageState<ReposPage> {
           length: this.widget.reposCatModelList?.length,
           child: Scaffold(
             appBar: AppBar(
-              title: TabLayout<ReposCatModel>(this.widget.reposCatModelList,
+              title: TabLayout<CatModel>(this.widget.reposCatModelList,
                   (reposCat) {
                 _showLoading();
                 this.widget.curReposCat = reposCat;
@@ -77,7 +77,7 @@ class _ReposState extends BasePageState<ReposPage> {
     });
   }
 
-  Future<ReposListModelResponse> _refreshList(BuildContext context, {int cid}) {
+  Future<ListItemModelResponse> _refreshList(BuildContext context, {int cid}) {
     var params = {};
     if (!ObjectUtil.isEmpty(cid)) {
       params.addAll({'cid': cid});
@@ -102,7 +102,7 @@ class _ReposState extends BasePageState<ReposPage> {
     _dismissLoadingFun = dismissLoadingFun;
   }
 
-  Widget buildListItem(List<ReposModel> list) {
+  Widget buildListItem(List<ListItemModel> list) {
     if (ObjectUtil.isEmpty(list)) {
       return Container(height: 0);
     }

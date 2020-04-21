@@ -3,9 +3,9 @@ import 'package:wanandroid_flutter/base/bloc_provider.dart';
 import 'package:wanandroid_flutter/common/application.dart';
 import 'package:wanandroid_flutter/common/common_import.dart';
 
-import 'data/home/article_list/article_list_notifier.dart';
-import 'data/home/banner/banner_bloc.dart';
-import 'data/home/banner/banner_notifier.dart';
+import 'package:wanandroid_flutter/data/home/article_list_notifier.dart';
+import 'package:wanandroid_flutter/data/home/banner_bloc.dart';
+import 'package:wanandroid_flutter/data/home/banner_notifier.dart';
 import 'data/repos/repos_list_notifier.dart';
 import 'data/repos/repos_cat_notifier.dart';
 import 'data/wx_article/wx_article_cat_notifier.dart';

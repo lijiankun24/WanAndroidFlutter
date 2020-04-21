@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:wanandroid_flutter/base/base_response.dart';
 
-part 'banner_model.g.dart';
+part 'package:wanandroid_flutter/data/home/banner_model.g.dart';
 
 @JsonSerializable()
 class BannerResponse extends BaseResponse {

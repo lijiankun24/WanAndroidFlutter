@@ -1,42 +1,41 @@
 import 'package:wanandroid_flutter/common/common_import.dart';
 
-part 'wx_article_list_model.g.dart';
+part 'list_item_model.g.dart';
 
 @JsonSerializable()
-class WxArticleListModelResponse extends BaseResponse {
-  WxArticlePageModel data;
+class ListItemModelResponse extends BaseResponse {
+  ListPageModel data;
 
-  WxArticleListModelResponse(this.data, int errorCode, String errorMsg)
+  ListItemModelResponse(this.data, int errorCode, String errorMsg)
       : super(errorCode, errorMsg);
 
-  factory WxArticleListModelResponse.fromJson(Map<String, dynamic> json) =>
-      _$WxArticleListModelResponseFromJson(json);
+  factory ListItemModelResponse.fromJson(Map<String, dynamic> json) =>
+      _$ListItemModelResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$WxArticleListModelResponseToJson(this);
+  Map<String, dynamic> toJson() => _$ListItemModelResponseToJson(this);
 }
 
 @JsonSerializable()
-class WxArticlePageModel {
+class ListPageModel {
   int curPage;
-  List<WxArticleModel> datas;
+  List<ListItemModel> datas;
   int offset;
   bool over;
   int pageCount;
   int size;
   int total;
 
-
-  WxArticlePageModel(this.curPage, this.datas, this.offset, this.over,
+  ListPageModel(this.curPage, this.datas, this.offset, this.over,
       this.pageCount, this.size, this.total);
 
-  factory WxArticlePageModel.fromJson(Map<String, dynamic> json) =>
-      _$WxArticlePageModelFromJson(json);
+  factory ListPageModel.fromJson(Map<String, dynamic> json) =>
+      _$ListPageModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$WxArticlePageModelToJson(this);
+  Map<String, dynamic> toJson() => _$ListPageModelToJson(this);
 }
 
 @JsonSerializable()
-class WxArticleModel {
+class ListItemModel {
   String apkLink;
   int audit;
   String author;
@@ -69,7 +68,7 @@ class WxArticleModel {
   int visible;
   int zan;
 
-  WxArticleModel(this.apkLink, this.audit, this.author, this.canEdit,
+  ListItemModel(this.apkLink, this.audit, this.author, this.canEdit,
       this.chapterId, this.chapterName, this.collect, this.courseId, this.desc,
       this.descMd, this.envelopePic, this.fresh, this.id, this.link,
       this.niceDate, this.niceShareDate, this.origin, this.prefix,
@@ -78,10 +77,10 @@ class WxArticleModel {
       this.title, this.type, this.userId, this.visible, this.zan);
 
 
-  factory WxArticleModel.fromJson(Map<String, dynamic> json) =>
-      _$WxArticleModelFromJson(json);
+  factory ListItemModel.fromJson(Map<String, dynamic> json) =>
+      _$ListItemModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$WxArticleModelToJson(this);
+  Map<String, dynamic> toJson() => _$ListItemModelToJson(this);
 }
 
 @JsonSerializable()

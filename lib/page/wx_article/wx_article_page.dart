@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/base/base_page.dart';
 import 'package:wanandroid_flutter/common/common_import.dart';
+import 'package:wanandroid_flutter/data/cat_model.dart';
+import 'package:wanandroid_flutter/data/list_item_model.dart';
 import 'package:wanandroid_flutter/data/wx_article/wx_article_cat_notifier.dart';
-import 'package:wanandroid_flutter/data/wx_article/wx_article_cat_model.dart';
 import 'package:wanandroid_flutter/data/wx_article/wx_article_list_notifier.dart';
-import 'package:wanandroid_flutter/data/wx_article/wx_article_list_model.dart';
 import 'package:wanandroid_flutter/widgets/tab_layout.dart';
+
 import 'wx_article_item.dart';
 
 class WxArticlePage extends BasePage {
@@ -16,7 +17,7 @@ class WxArticlePage extends BasePage {
 }
 
 class _WxArticleState extends BasePageState<WxArticlePage> {
-  List<WxArticleCatModel> wxArticleCatList;
+  List<CatModel> wxArticleCatList;
   int curWxArticleCatId = 408;
   Function _dismissLoadingFun;
 
@@ -29,7 +30,7 @@ class _WxArticleState extends BasePageState<WxArticlePage> {
           length: snapshot?.response?.data?.length,
           child: Scaffold(
             appBar: AppBar(
-              title: TabLayout<WxArticleCatModel>(
+              title: TabLayout<CatModel>(
                 wxArticleCatList,
                 (model) {
                   _showLoading();
@@ -46,7 +47,8 @@ class _WxArticleState extends BasePageState<WxArticlePage> {
                         _dismissLoadingFun();
                         _dismissLoadingFun = null;
                       }
-                      return buildListItem(snapshot?.response?.data?.datas);
+                      return buildListItem(
+                          snapshot?.response?.data?.datas, context);
                     },
                   ),
                 ],
@@ -72,7 +74,7 @@ class _WxArticleState extends BasePageState<WxArticlePage> {
     });
   }
 
-  Future<WxArticleListModelResponse> _refreshWxArticleList(BuildContext context,
+  Future<ListItemModelResponse> _refreshWxArticleList(BuildContext context,
       {int id}) {
     if (id != null) {
       curWxArticleCatId = id;
@@ -97,12 +99,18 @@ class _WxArticleState extends BasePageState<WxArticlePage> {
     _dismissLoadingFun = dismissLoadingFun;
   }
 
-  Widget buildListItem(List<WxArticleModel> list) {
+  Widget buildListItem(List<ListItemModel> list, BuildContext context) {
     if (ObjectUtil.isEmpty(list)) {
       return Container(height: 0);
     }
     List<Widget> itemList = list.map((model) {
-      return WxArticleItem(model);
+      return WxArticleItem(
+        article: model,
+        valueChanged: (article) {
+          NavigatorUtils.pushWeb(context,
+              url: article.link, title: article.title);
+        },
+      );
     }).toList();
     return Column(
       children: itemList,

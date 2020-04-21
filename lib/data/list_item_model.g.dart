@@ -1,36 +1,36 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'wx_article_list_model.dart';
+part of 'list_item_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-WxArticleListModelResponse _$WxArticleListModelResponseFromJson(
+ListItemModelResponse _$ListItemModelResponseFromJson(
     Map<String, dynamic> json) {
-  return WxArticleListModelResponse(
+  return ListItemModelResponse(
       json['data'] == null
           ? null
-          : WxArticlePageModel.fromJson(json['data'] as Map<String, dynamic>),
+          : ListPageModel.fromJson(json['data'] as Map<String, dynamic>),
       json['errorCode'] as int,
       json['errorMsg'] as String);
 }
 
-Map<String, dynamic> _$WxArticleListModelResponseToJson(
-        WxArticleListModelResponse instance) =>
+Map<String, dynamic> _$ListItemModelResponseToJson(
+        ListItemModelResponse instance) =>
     <String, dynamic>{
       'errorCode': instance.errorCode,
       'errorMsg': instance.errorMsg,
       'data': instance.data
     };
 
-WxArticlePageModel _$WxArticlePageModelFromJson(Map<String, dynamic> json) {
-  return WxArticlePageModel(
+ListPageModel _$ListPageModelFromJson(Map<String, dynamic> json) {
+  return ListPageModel(
       json['curPage'] as int,
       (json['datas'] as List)
           ?.map((e) => e == null
               ? null
-              : WxArticleModel.fromJson(e as Map<String, dynamic>))
+              : ListItemModel.fromJson(e as Map<String, dynamic>))
           ?.toList(),
       json['offset'] as int,
       json['over'] as bool,
@@ -39,7 +39,7 @@ WxArticlePageModel _$WxArticlePageModelFromJson(Map<String, dynamic> json) {
       json['total'] as int);
 }
 
-Map<String, dynamic> _$WxArticlePageModelToJson(WxArticlePageModel instance) =>
+Map<String, dynamic> _$ListPageModelToJson(ListPageModel instance) =>
     <String, dynamic>{
       'curPage': instance.curPage,
       'datas': instance.datas,
@@ -50,8 +50,8 @@ Map<String, dynamic> _$WxArticlePageModelToJson(WxArticlePageModel instance) =>
       'total': instance.total
     };
 
-WxArticleModel _$WxArticleModelFromJson(Map<String, dynamic> json) {
-  return WxArticleModel(
+ListItemModel _$ListItemModelFromJson(Map<String, dynamic> json) {
+  return ListItemModel(
       json['apkLink'] as String,
       json['audit'] as int,
       json['author'] as String,
@@ -88,7 +88,7 @@ WxArticleModel _$WxArticleModelFromJson(Map<String, dynamic> json) {
       json['zan'] as int);
 }
 
-Map<String, dynamic> _$WxArticleModelToJson(WxArticleModel instance) =>
+Map<String, dynamic> _$ListItemModelToJson(ListItemModel instance) =>
     <String, dynamic>{
       'apkLink': instance.apkLink,
       'audit': instance.audit,

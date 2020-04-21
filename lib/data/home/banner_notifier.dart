@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/common/common_import.dart';
-import 'package:wanandroid_flutter/data/home/banner/banner_model.dart';
+import 'package:wanandroid_flutter/data/home/banner_model.dart';
 
 class BannerNotifier with ChangeNotifier {
   BannerResponse _response;

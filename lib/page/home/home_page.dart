@@ -5,12 +5,13 @@ import 'package:provide/provide.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:wanandroid_flutter/base/base_page.dart';
 import 'package:wanandroid_flutter/common/common_import.dart';
-import 'package:wanandroid_flutter/data/home/article_list/article_list_model.dart';
-import 'package:wanandroid_flutter/data/home/article_list/article_list_notifier.dart';
-import 'package:wanandroid_flutter/data/home/banner/banner_model.dart';
-import 'package:wanandroid_flutter/data/home/banner/banner_notifier.dart';
+import 'package:wanandroid_flutter/data/home/article_list_notifier.dart';
+import 'package:wanandroid_flutter/data/home/banner_model.dart';
+import 'package:wanandroid_flutter/data/home/banner_notifier.dart';
+import 'package:wanandroid_flutter/data/list_item_model.dart';
 import 'package:wanandroid_flutter/page/home/article_item.dart';
 import 'package:wanandroid_flutter/utils/object_utils.dart';
+
 import 'banner_indicator.dart';
 
 class HomePage extends BasePage {
@@ -83,7 +84,7 @@ class _HomeState extends BasePageState<HomePage> {
     );
   }
 
-  Widget buildListItem(List<ArticleModel> list) {
+  Widget buildListItem(List<ListItemModel> list) {
     if (ObjectUtil.isEmpty(list)) {
       return Container(height: 0.0);
     }

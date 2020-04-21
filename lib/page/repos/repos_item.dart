@@ -1,10 +1,10 @@
 import 'package:wanandroid_flutter/common/common_import.dart';
-import 'package:wanandroid_flutter/data/repos/repos_list_model.dart';
+import 'package:wanandroid_flutter/data/list_item_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class ReposItem extends StatelessWidget {
-  final ReposModel reposModel;
-  final ValueChanged<ReposModel> valueChanged;
+  final ListItemModel reposModel;
+  final ValueChanged<ListItemModel> valueChanged;
 
   ReposItem({Key key, this.reposModel, this.valueChanged}) : super(key: key);
 

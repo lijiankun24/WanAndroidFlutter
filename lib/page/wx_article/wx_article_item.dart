@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/common/common_import.dart';
-import 'package:wanandroid_flutter/data/wx_article/wx_article_list_model.dart';
+import 'package:wanandroid_flutter/data/list_item_model.dart';
 
 class WxArticleItem extends StatelessWidget {
-  final WxArticleModel _article;
+  final ListItemModel article;
+  final ValueChanged<ListItemModel> valueChanged;
 
-  WxArticleItem(this._article);
+  WxArticleItem({Key key, this.article, this.valueChanged}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var publishTimeStr = ObjectUtil.timeToDate(_article.publishTime);
+    var publishTimeStr = ObjectUtil.timeToDate(article.publishTime);
     return InkWell(
-      onTap: null,
+      onTap: () {
+        if (valueChanged != null) {
+          valueChanged(article);
+        }
+      },
       child: Container(
         margin: const EdgeInsets.only(
           left: 20.0,
@@ -25,7 +30,7 @@ class WxArticleItem extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     child: Text(
-                      _article.author,
+                      article.author,
                       style: TextStyle(
                         color: Color(0xff8d8d98),
                         fontSize: 12,
@@ -33,7 +38,7 @@ class WxArticleItem extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '${_article.superChapterName}/${_article.chapterName}',
+                    '${article.superChapterName}/${article.chapterName}',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       color: Color(0xff8d8d98),
@@ -47,7 +52,7 @@ class WxArticleItem extends StatelessWidget {
               alignment: Alignment.centerLeft,
               margin: EdgeInsets.only(top: 10),
               child: Text(
-                _article.title,
+                article.title,
                 style: TextStyle(
                   color: Color(0xff222333),
                   fontSize: 16,
