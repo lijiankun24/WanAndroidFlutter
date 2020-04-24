@@ -21,9 +21,9 @@ class Api {
   /// 某个微信公众号分类列表（第三个tab）
   static const WX_ARTICLE_LIST = '/wxarticle/list/%d/1/json';
 
-  /// 知识体系（第四个tab）
-  static const SYSTEM_TREE = '/tree/json';
+  /// 知识体系分类（第四个tab）
+  static const SYSTEM_CAT = '/tree/json';
 
-  /// 某个知识体系下的文章列表（第四个tab）
+  /// 某个知识体系分类下的文章列表（第四个tab）
   static const SYSTEM_ARTICLE_LIST = '/article/list/0/json?cid=%d';
 }

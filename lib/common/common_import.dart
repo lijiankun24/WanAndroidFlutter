@@ -12,4 +12,7 @@ export 'package:wanandroid_flutter/utils/navigator_utils.dart';
 export 'package:wanandroid_flutter/widgets/loading_view.dart';
 export 'package:wanandroid_flutter/widgets/loading_dialog.dart';
 
+export 'package:wanandroid_flutter/data/cat_model.dart';
+export 'package:wanandroid_flutter/data/list_item_model.dart';
+
 export 'package:sprintf/sprintf.dart';

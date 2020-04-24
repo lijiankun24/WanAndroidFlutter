@@ -6,10 +6,13 @@ import 'package:wanandroid_flutter/common/common_import.dart';
 import 'package:wanandroid_flutter/data/home/article_list_notifier.dart';
 import 'package:wanandroid_flutter/data/home/banner_bloc.dart';
 import 'package:wanandroid_flutter/data/home/banner_notifier.dart';
-import 'data/repos/repos_list_notifier.dart';
-import 'data/repos/repos_cat_notifier.dart';
-import 'data/wx_article/wx_article_cat_notifier.dart';
-import 'data/wx_article/wx_article_list_notifier.dart';
+import 'package:wanandroid_flutter/data/repos/repos_list_notifier.dart';
+import 'package:wanandroid_flutter/data/repos/repos_cat_notifier.dart';
+import 'package:wanandroid_flutter/data/wx_article/wx_article_cat_notifier.dart';
+import 'package:wanandroid_flutter/data/wx_article/wx_article_list_notifier.dart';
+import 'package:wanandroid_flutter/data/system/system_cat_notifier.dart';
+import 'package:wanandroid_flutter/data/system/system_list_notifier.dart';
+
 import 'page/main_page.dart';
 
 void main() {
@@ -43,12 +46,16 @@ void testProvider() {
   var reposCatNotifier = new ReposCatNotifier();
   var wxArticleCatNotifier = new WxArticleCatNotifier();
   var wxArticleListNotifier = new WxArticleListNotifier();
+  var systemCatNotifier = new SystemCatNotifier();
+  var systemListNotifier = new SystemListNotifier();
   var provider = new Providers();
   provider..provide(Provider<BannerNotifier>.value(bannerNotifier));
   provider..provide(Provider<ArticleNotifier>.value(articleListNotifier));
   provider..provide(Provider<ReposListNotifier>.value(reposListNotifier));
   provider..provide(Provider<ReposCatNotifier>.value(reposCatNotifier));
   provider..provide(Provider<WxArticleCatNotifier>.value(wxArticleCatNotifier));
+  provider..provide(Provider<SystemCatNotifier>.value(systemCatNotifier));
+  provider..provide(Provider<SystemListNotifier>.value(systemListNotifier));
   provider
     ..provide(Provider<WxArticleListNotifier>.value(wxArticleListNotifier));
   runApp(ProviderNode(child: ProviderApp(), providers: provider));
