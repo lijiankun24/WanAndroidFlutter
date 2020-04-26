@@ -1,6 +1,6 @@
 import 'package:wanandroid_flutter/common/common_import.dart';
 
-part 'list_item_model.g.dart';
+part 'package:wanandroid_flutter/data/list/list_item_model.g.dart';
 
 @JsonSerializable()
 class ListItemModelResponse extends BaseResponse {

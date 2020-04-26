@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/base/base_page.dart';
 import 'package:wanandroid_flutter/common/common_import.dart';
-import 'package:wanandroid_flutter/data/cat_model.dart';
-import 'package:wanandroid_flutter/data/list_item_model.dart';
-import 'package:wanandroid_flutter/data/wx_article/wx_article_cat_notifier.dart';
-import 'package:wanandroid_flutter/data/wx_article/wx_article_list_notifier.dart';
+import 'package:wanandroid_flutter/data/list/cat_model.dart';
+import 'package:wanandroid_flutter/data/list/list_item_model.dart';
+import 'package:wanandroid_flutter/data/list/wx_article/wx_article_cat_notifier.dart';
+import 'package:wanandroid_flutter/data/list/wx_article/wx_article_list_notifier.dart';
 import 'package:wanandroid_flutter/widgets/tab_layout.dart';
 
 import 'wx_article_item.dart';

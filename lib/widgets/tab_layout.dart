@@ -1,5 +1,5 @@
 import 'package:wanandroid_flutter/common/common_import.dart';
-import 'package:wanandroid_flutter/data/cat_model.dart';
+import 'package:wanandroid_flutter/data/list/cat_model.dart';
 
 class TabLayout<T> extends StatelessWidget {
   final List<T> reposCatModelList;

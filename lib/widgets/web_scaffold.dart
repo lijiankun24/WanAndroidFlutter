@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'dart:async';
 import 'package:wanandroid_flutter/common/common_import.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class WebScaffold extends StatefulWidget {
   final String title;

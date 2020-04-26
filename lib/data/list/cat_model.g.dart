@@ -25,7 +25,10 @@ Map<String, dynamic> _$CatModelResponseToJson(CatModelResponse instance) =>
 
 CatModel _$CatModelFromJson(Map<String, dynamic> json) {
   return CatModel(
-      (json['children'] as List)?.map((e) => e as String)?.toList(),
+      (json['children'] as List)
+          ?.map((e) =>
+              e == null ? null : CatModel.fromJson(e as Map<String, dynamic>))
+          ?.toList(),
       json['courseId'] as int,
       json['id'] as int,
       json['name'] as String,

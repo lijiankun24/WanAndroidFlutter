@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/common/common_import.dart';
-import 'package:wanandroid_flutter/data/list_item_model.dart';
+import 'package:wanandroid_flutter/data/list/list_item_model.dart';
 
 class WxArticleItem extends StatelessWidget {
   final ListItemModel article;

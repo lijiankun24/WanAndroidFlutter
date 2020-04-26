@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/base/base_page.dart';
+import 'package:wanandroid_flutter/common/common_import.dart';
+import 'package:wanandroid_flutter/data/list/system/system_cat_notifier.dart';
 
 class SystemPage extends BasePage {
   @override
@@ -11,10 +13,43 @@ class SystemPage extends BasePage {
 class _SystemState extends BasePageState<SystemPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text('体系'),
+    _refreshWxArticleCat(context);
+    return Scaffold(
+      body: RefreshIndicator(
+        child: ListView(
+          children: <Widget>[
+            Provide<SystemCatNotifier>(
+              builder: (context, child, snapshot) {
+                return buildItem(snapshot?.response?.data);
+              },
+            ),
+          ],
+        ),
+        onRefresh: () {
+          return _refreshWxArticleCat(context);
+        },
       ),
+    );
+  }
+
+  Future<CatModelResponse> _refreshWxArticleCat(BuildContext context) {
+    return Provide.value<SystemCatNotifier>(context).getSystemCat();
+  }
+
+  Widget buildItem(List<CatModel> list) {
+    if (ObjectUtil.isEmpty(list)) {
+      return Container(
+        height: 0,
+      );
+    }
+    List<Widget> listItem = list.map((model) {
+      return Container(
+        height: 80,
+        child: Text(model.name),
+      );
+    }).toList();
+    return Column(
+      children: listItem,
     );
   }
 }

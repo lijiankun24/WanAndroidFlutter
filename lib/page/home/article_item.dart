@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wanandroid_flutter/data/list_item_model.dart';
+import 'package:wanandroid_flutter/data/list/list_item_model.dart';
 import 'package:wanandroid_flutter/utils/object_utils.dart';
 
 class ArticleItem extends StatelessWidget {

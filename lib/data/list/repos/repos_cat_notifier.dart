@@ -1,14 +1,14 @@
 import 'package:wanandroid_flutter/common/common_import.dart';
-import 'package:wanandroid_flutter/data/cat_model.dart';
+import 'package:wanandroid_flutter/data/list/cat_model.dart';
 
-class WxArticleCatNotifier with ChangeNotifier {
+class ReposCatNotifier with ChangeNotifier {
   CatModelResponse _response;
 
   CatModelResponse get response => _response;
 
-  Future<CatModelResponse> getWxArticleCat() {
+  Future<CatModelResponse> getReposCat() {
     return Application.netManager
-        .get(Api.WX_ARTICLE_CAT)
+        .get(Api.REPOS_CAT)
         .then<CatModelResponse>((res) {
       _response = CatModelResponse.fromJson(res.data);
       notifyListeners();

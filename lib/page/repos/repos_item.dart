@@ -1,5 +1,5 @@
 import 'package:wanandroid_flutter/common/common_import.dart';
-import 'package:wanandroid_flutter/data/list_item_model.dart';
+import 'package:wanandroid_flutter/data/list/list_item_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class ReposItem extends StatelessWidget {

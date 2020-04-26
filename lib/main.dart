@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/base/bloc_provider.dart';
 import 'package:wanandroid_flutter/common/application.dart';
 import 'package:wanandroid_flutter/common/common_import.dart';
-
 import 'package:wanandroid_flutter/data/home/article_list_notifier.dart';
 import 'package:wanandroid_flutter/data/home/banner_bloc.dart';
 import 'package:wanandroid_flutter/data/home/banner_notifier.dart';
-import 'package:wanandroid_flutter/data/repos/repos_list_notifier.dart';
-import 'package:wanandroid_flutter/data/repos/repos_cat_notifier.dart';
-import 'package:wanandroid_flutter/data/wx_article/wx_article_cat_notifier.dart';
-import 'package:wanandroid_flutter/data/wx_article/wx_article_list_notifier.dart';
-import 'package:wanandroid_flutter/data/system/system_cat_notifier.dart';
-import 'package:wanandroid_flutter/data/system/system_list_notifier.dart';
+import 'package:wanandroid_flutter/data/list/repos/repos_cat_notifier.dart';
+import 'package:wanandroid_flutter/data/list/repos/repos_list_notifier.dart';
+import 'package:wanandroid_flutter/data/list/system/system_cat_notifier.dart';
+import 'package:wanandroid_flutter/data/list/system/system_list_notifier.dart';
+import 'package:wanandroid_flutter/data/list/wx_article/wx_article_cat_notifier.dart';
+import 'package:wanandroid_flutter/data/list/wx_article/wx_article_list_notifier.dart';
 
 import 'page/main_page.dart';
 

@@ -1,14 +1,14 @@
 import 'package:wanandroid_flutter/common/common_import.dart';
-import 'package:wanandroid_flutter/data/list_item_model.dart';
+import 'package:wanandroid_flutter/data/list/list_item_model.dart';
 
-class WxArticleListNotifier with ChangeNotifier {
+class ReposListNotifier with ChangeNotifier {
   ListItemModelResponse _response;
 
   ListItemModelResponse get response => _response;
 
-  Future<ListItemModelResponse> getWxArticleList(int id) {
+  Future<ListItemModelResponse> getReposList({Map params}) {
     return Application.netManager
-        .get(sprintf(Api.WX_ARTICLE_LIST, [id]))
+        .get(Api.REPOS_LIST, params: params)
         .then<ListItemModelResponse>((res) {
       _response = ListItemModelResponse.fromJson(res.data);
       notifyListeners();

@@ -1,6 +1,6 @@
 import 'package:wanandroid_flutter/common/common_import.dart';
 
-part 'cat_model.g.dart';
+part 'package:wanandroid_flutter/data/list/cat_model.g.dart';
 
 @JsonSerializable()
 class CatModelResponse extends BaseResponse {
@@ -17,7 +17,7 @@ class CatModelResponse extends BaseResponse {
 
 @JsonSerializable()
 class CatModel {
-  List<String> children;
+  List<CatModel> children;
   int courseId;
   int id;
   String name;
