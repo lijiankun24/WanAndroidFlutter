@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/base/base_page.dart';
 import 'package:wanandroid_flutter/common/common_import.dart';
 import 'package:wanandroid_flutter/data/list/system/system_cat_notifier.dart';
+import 'package:wanandroid_flutter/page/system/system_item.dart';
 
 class SystemPage extends BasePage {
   @override
@@ -43,9 +44,9 @@ class _SystemState extends BasePageState<SystemPage> {
       );
     }
     List<Widget> listItem = list.map((model) {
-      return Container(
-        height: 80,
-        child: Text(model.name),
+      return SystemItem(
+        catModel: model,
+        valueChanged: (data) {},
       );
     }).toList();
     return Column(
