@@ -16,6 +16,9 @@ class _SystemState extends BasePageState<SystemPage> {
   Widget build(BuildContext context) {
     _refreshWxArticleCat(context);
     return Scaffold(
+      appBar: AppBar(
+        title: Text('知识体系'),
+      ),
       body: RefreshIndicator(
         child: ListView(
           children: <Widget>[
