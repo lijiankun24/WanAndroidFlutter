@@ -19,19 +19,21 @@ class _SystemState extends BasePageState<SystemPage> {
       appBar: AppBar(
         title: Text('知识体系'),
       ),
-      body: RefreshIndicator(
-        child: ListView(
-          children: <Widget>[
-            Provide<SystemCatNotifier>(
-              builder: (context, child, snapshot) {
-                return buildItem(snapshot?.response?.data);
-              },
-            ),
-          ],
+      body: Center(
+        child: RefreshIndicator(
+          child: ListView(
+            children: <Widget>[
+              Provide<SystemCatNotifier>(
+                builder: (context, child, snapshot) {
+                  return buildItem(snapshot?.response?.data);
+                },
+              ),
+            ],
+          ),
+          onRefresh: () {
+            return _refreshWxArticleCat(context);
+          },
         ),
-        onRefresh: () {
-          return _refreshWxArticleCat(context);
-        },
       ),
     );
   }

@@ -9,14 +9,16 @@ class SystemItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 80.0,
-      margin: const EdgeInsets.only(
-        left: 20.0,
-        right: 20.0,
-      ),
-      child: InkWell(
+    return InkWell(
+      onTap: () => valueChanged(catModel),
+      child: Container(
+        alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.only(
+          left: 20,
+          right: 20,
+        ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(
@@ -37,6 +39,9 @@ class SystemItem extends StatelessWidget {
                             color: Color(0xff222333),
                             fontSize: 16,
                           ),
+                        ),
+                        Wrap(
+                          children: buildTag(catModel.children),
                         ),
                       ],
                     ),
@@ -62,5 +67,19 @@ class SystemItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<Widget> buildTag(List<CatModel> childTag) {
+    return childTag.map(
+      (model) {
+        return Text(
+          model.name,
+          style: TextStyle(
+            color: Color(0xff222333),
+            fontSize: 16,
+          ),
+        );
+      },
+    ).toList();
   }
 }
