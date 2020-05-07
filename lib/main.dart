@@ -11,12 +11,12 @@ import 'package:wanandroid_flutter/data/list/system/system_cat_notifier.dart';
 import 'package:wanandroid_flutter/data/list/system/system_list_notifier.dart';
 import 'package:wanandroid_flutter/data/list/wx_article/wx_article_cat_notifier.dart';
 import 'package:wanandroid_flutter/data/list/wx_article/wx_article_list_notifier.dart';
-import 'package:flutter/rendering.dart';
+//import 'package:flutter/rendering.dart';
 
 import 'page/main_page.dart';
 
 void main() {
-  debugPaintSizeEnabled = true;
+//  debugPaintSizeEnabled = true;
   Application.globalInit(() {
 //    runApp(MyApp());
     testProvider();

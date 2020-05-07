@@ -25,34 +25,39 @@ class SystemItem extends StatelessWidget {
                 top: 16.5,
               ),
             ),
-            Expanded(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          catModel.name,
-                          style: TextStyle(
-                            color: Color(0xff222333),
-                            fontSize: 16,
-                          ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        catModel.name,
+                        style: TextStyle(
+                          color: Color(0xff222333),
+                          fontSize: 16,
                         ),
-                        Wrap(
-                          children: buildTag(catModel.children),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 10,
                         ),
-                      ],
-                    ),
+                      ),
+                      Wrap(
+                        spacing: 10.0,
+                        runSpacing: 3.0,
+                        children: buildTag(catModel.children),
+                      ),
+                    ],
                   ),
-                  Image.asset(
-                    'images/ic_more.png',
-                    width: 16,
-                    height: 16,
-                  ),
-                ],
-              ),
+                ),
+                Image.asset(
+                  'images/ic_more.png',
+                  width: 16,
+                  height: 16,
+                ),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.only(
@@ -72,11 +77,13 @@ class SystemItem extends StatelessWidget {
   List<Widget> buildTag(List<CatModel> childTag) {
     return childTag.map(
       (model) {
-        return Text(
-          model.name,
-          style: TextStyle(
-            color: Color(0xff222333),
-            fontSize: 16,
+        return Container(
+          child: Text(
+            model.name,
+            style: TextStyle(
+              color: Color(0xff8d8d98),
+              fontSize: 12,
+            ),
           ),
         );
       },
