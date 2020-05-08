@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/base/base_page.dart';
 import 'package:wanandroid_flutter/common/common_import.dart';
 import 'package:wanandroid_flutter/data/list/system/system_cat_notifier.dart';
-import 'package:wanandroid_flutter/page/system/system_item.dart';
+import 'package:wanandroid_flutter/page/system/system_cat_item.dart';
+import 'package:wanandroid_flutter/page/system/system_list_page.dart';
 
 class SystemPage extends BasePage {
   @override
@@ -25,7 +26,7 @@ class _SystemState extends BasePageState<SystemPage> {
             children: <Widget>[
               Provide<SystemCatNotifier>(
                 builder: (context, child, snapshot) {
-                  return buildItem(snapshot?.response?.data);
+                  return buildItem(snapshot?.response?.data, context);
                 },
               ),
             ],
@@ -42,7 +43,7 @@ class _SystemState extends BasePageState<SystemPage> {
     return Provide.value<SystemCatNotifier>(context).getSystemCat();
   }
 
-  Widget buildItem(List<CatModel> list) {
+  Widget buildItem(List<CatModel> list, BuildContext buildContext) {
     if (ObjectUtil.isEmpty(list)) {
       return Container(
         height: 0,
@@ -51,7 +52,11 @@ class _SystemState extends BasePageState<SystemPage> {
     List<Widget> listItem = list.map((model) {
       return SystemItem(
         catModel: model,
-        valueChanged: (data) {},
+        valueChanged: (data) {
+          Navigator.push(buildContext, MaterialPageRoute(builder: (context) {
+            return SystemListPage(catList: data.children);
+          }));
+        },
       );
     }).toList();
     return Column(

@@ -3,7 +3,7 @@ import 'package:wanandroid_flutter/base/base_page.dart';
 import 'package:wanandroid_flutter/page/wx_article/wx_article_page.dart';
 import 'package:wanandroid_flutter/page/home/home_page.dart';
 import 'package:wanandroid_flutter/page/repos/repos_page.dart';
-import 'package:wanandroid_flutter/page/system/system_page.dart';
+import 'package:wanandroid_flutter/page/system/system_cat_page.dart';
 
 class MainPage extends BasePage {
   @override
