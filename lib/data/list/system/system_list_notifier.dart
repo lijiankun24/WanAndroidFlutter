@@ -5,9 +5,9 @@ class SystemListNotifier with ChangeNotifier {
 
   ListItemModelResponse get response => _response;
 
-  Future<ListItemModelResponse> getSystemList() {
+  Future<ListItemModelResponse> getSystemList(int id) {
     return Application.netManager
-        .get(Api.SYSTEM_ARTICLE_LIST)
+        .get(sprintf(Api.SYSTEM_ARTICLE_LIST, [id]))
         .then<ListItemModelResponse>((_res) {
       _response = ListItemModelResponse.fromJson(_res.data);
       notifyListeners();
