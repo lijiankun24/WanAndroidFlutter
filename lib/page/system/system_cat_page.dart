@@ -54,7 +54,7 @@ class _SystemState extends BasePageState<SystemPage> {
         catModel: model,
         valueChanged: (data) {
           Navigator.push(buildContext, MaterialPageRoute(builder: (context) {
-            return SystemListPage(catList: data.children);
+            return SystemListPage(catParentModel: data);
           }));
         },
       );

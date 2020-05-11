@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/base/base_page.dart';
 import 'package:wanandroid_flutter/common/common_import.dart';
 import 'package:wanandroid_flutter/data/list/system/system_list_notifier.dart';
-import 'package:wanandroid_flutter/widgets/tab_layout.dart';
 import 'package:wanandroid_flutter/page/system/system_list_item.dart';
+import 'package:wanandroid_flutter/widgets/tab_layout.dart';
 
 class SystemListPage extends BasePage {
-  final List<CatModel> catList;
+  final CatModel catParentModel;
+  final List<CatModel> catChildList;
 
-  SystemListPage({Key key, @required this.catList}) : super(key: key);
+  SystemListPage({Key key, @required this.catParentModel})
+      : catChildList = catParentModel.children,
+        super(key: key);
 
   @override
   BasePageState createState() => _SystemListState();
@@ -20,7 +23,7 @@ class _SystemListState extends BasePageState<SystemListPage> {
 
   @override
   void initState() {
-    _curReposCat = widget.catList[0];
+    _curReposCat = widget.catChildList[0];
     super.initState();
   }
 
@@ -28,10 +31,10 @@ class _SystemListState extends BasePageState<SystemListPage> {
   Widget build(BuildContext context) {
     _refreshList(context, _curReposCat.id);
     return DefaultTabController(
-      length: widget.catList?.length,
+      length: widget.catChildList?.length,
       child: Scaffold(
         appBar: AppBar(
-          title: TabLayout<CatModel>(widget.catList, (catModel) {
+          title: TabLayout<CatModel>(widget.catChildList, (catModel) {
             _curReposCat = catModel;
             _showLoading();
             _refreshList(context, _curReposCat.id);
@@ -47,7 +50,10 @@ class _SystemListState extends BasePageState<SystemListPage> {
                       _dismissLoadingFun();
                       _dismissLoadingFun = null;
                     }
-                    return buildListItem(snapshot?.response?.data?.datas);
+                    return buildListItem(
+                      context,
+                      snapshot?.response?.data?.datas,
+                    );
                   },
                 ),
               ],
@@ -65,14 +71,22 @@ class _SystemListState extends BasePageState<SystemListPage> {
     return Provide.value<SystemListNotifier>(context).getSystemList(id);
   }
 
-  Widget buildListItem(List<ListItemModel> modelList) {
+  Widget buildListItem(BuildContext context, List<ListItemModel> modelList) {
     if (ObjectUtil.isEmpty(modelList)) {
       return Container(height: 0);
     }
     List<Widget> children = modelList.map<Widget>((model) {
       return SystemListItem(
         itemModel: model,
-        valueChanged: (data) {},
+        parentCatName: widget.catParentModel.name,
+        catName: _curReposCat.name,
+        valueChanged: (data) {
+          NavigatorUtils.pushWeb(
+            context,
+            url: data.link,
+            title: data.title,
+          );
+        },
       );
     }).toList();
     return Column(

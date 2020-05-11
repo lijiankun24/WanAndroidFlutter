@@ -2,14 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:wanandroid_flutter/common/common_import.dart';
 
 class SystemListItem extends StatelessWidget {
+  final String parentCatName;
+  final String catName;
   final ListItemModel itemModel;
   final ValueChanged<ListItemModel> valueChanged;
 
-  SystemListItem({Key key, this.itemModel, this.valueChanged})
+  SystemListItem(
+      {Key key,
+      this.itemModel,
+      this.parentCatName,
+      this.catName,
+      this.valueChanged})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var publishTimeStr = ObjectUtil.timeToDate(itemModel.publishTime);
     return InkWell(
       onTap: () => valueChanged(itemModel),
       child: Container(
@@ -32,17 +40,13 @@ class SystemListItem extends StatelessWidget {
                 color: Color(0xff222333),
                 fontSize: 16,
               ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 10.0,
-              ),
             ),
             Visibility(
               visible: !ObjectUtil.isEmpty(itemModel.desc),
               child: Container(
+                padding: const EdgeInsets.only(
+                  top: 10.0,
+                ),
                 constraints: BoxConstraints(
                   minHeight: 60,
                 ),
@@ -56,6 +60,31 @@ class SystemListItem extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 10.0,
+              ),
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: Text(
+                    publishTimeStr,
+                    style: TextStyle(
+                      color: Color(0xff8d8d98),
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+                Text(
+                  parentCatName + '/' + catName,
+                  style: TextStyle(
+                    color: Color(0xff8d8d98),
+                    fontSize: 12,
+                  ),
+                ),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.only(
